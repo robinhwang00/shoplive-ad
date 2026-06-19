@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>샵라이브 올인원 광고</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Pretendard', 'Noto Sans KR', sans-serif;
+    background: #f7f8fa;
+    color: #1a1a2e;
+    line-height: 1.6;
+  }
+
+  /* Hero */
+  .hero {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 36px 24px 32px;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: #eff6ff;
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    letter-spacing: 0.3px;
+  }
+  .hero h1 {
+    font-size: clamp(30px, 5vw, 48px);
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+  .hero h1 span { color: #2563eb; }
+  .hero p {
+    font-size: 16px;
+    color: #475569;
+    max-width: 560px;
+    margin: 0 auto 20px;
+    line-height: 1.7;
+  }
+  .hero-cta {
+    display: inline-block;
+    background: #2563eb;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 11px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .hero-cta:hover { background: #1d4ed8; }
+
+  /* Features */
+  .features {
+    background: #eff6ff;
+    padding: 20px 24px;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .feature-item {
+    background: #fff;
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .feature-icon {
+    font-size: 18px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .feature-item p {
+    font-size: 13px;
+    color: #334155;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  /* Section */
+  .section {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 36px 24px;
+  }
+  .section-header {
+    margin-bottom: 20px;
+  }
+  .section-tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 6px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  .tag-single { background: #eff6ff; color: #2563eb; }
+  .tag-package { background: #fff1f2; color: #e11d48; }
+  .section-header h2 {
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 4px;
+  }
+  .section-header p {
+    font-size: 15px;
+    color: #64748b;
+  }
+
+  /* Product Cards */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+  }
+  .product-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 18px 20px;
+    border: 1px solid #e2e8f0;
+    position: relative;
+  }
+  .card-badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+  }
+  .badge-purple { background: #f5f3ff; color: #7c3aed; }
+  .badge-blue { background: #eff6ff; color: #2563eb; }
+  .badge-pink { background: #fff1f2; color: #e11d48; }
+
+  .card-channel {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-bottom: 2px;
+  }
+  .card-title {
+    font-size: 17px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  .card-divider {
+    height: 1px;
+    background: #f1f5f9;
+    margin: 10px 0;
+  }
+  .pricing-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .price-option {
+    flex: 1;
+    min-width: 100px;
+  }
+  .price-label {
+    font-size: 12px;
+    color: #64748b;
+    margin-bottom: 2px;
+  }
+  .price-highlight { color: #2563eb; font-weight: 700; }
+  .price-highlight.red { color: #e11d48; }
+  .price-amount {
+    font-size: 26px;
+    font-weight: 800;
+    color: #0f172a;
+  }
+  .card-tag {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #94a3b8;
+    background: #f8fafc;
+    padding: 4px 10px;
+    border-radius: 6px;
+    display: inline-block;
+  }
+
+  /* Package Cards */
+  .package-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+    position: relative;
+  }
+  .package-card.featured {
+    border: 2px solid #2563eb;
+  }
+  .featured-badge {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: #e11d48;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 20px;
+  }
+  .package-name {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 2px;
+  }
+  .package-desc {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+  .package-items {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-bottom: 14px;
+  }
+  .pkg-item {
+    font-size: 15px;
+    font-weight: 700;
+    padding: 12px 12px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  .pkg-item.purple { background: #f5f3ff; color: #6d28d9; }
+  .pkg-item.blue { background: #eff6ff; color: #1d4ed8; }
+  .pkg-item.pink { background: #fff1f2; color: #be185d; }
+  .pkg-plus {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #94a3b8;
+    line-height: 1;
+  }
+  .package-total {
+    font-size: 14px;
+    font-weight: 700;
+    color: #334155;
+    margin-bottom: 6px;
+  }
+  .package-price-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .discount-badge {
+    background: #dcfce7;
+    color: #16a34a;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+  }
+  .original-price {
+    font-size: 13px;
+    color: #94a3b8;
+    text-decoration: line-through;
+  }
+  .final-price {
+    font-size: 28px;
+    font-weight: 800;
+    color: #0f172a;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    background: #0f172a;
+    padding: 40px 24px;
+    text-align: center;
+  }
+  .cta-section h2 {
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .cta-section p {
+    color: #94a3b8;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: #2563eb;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 11px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .cta-btn:hover { background: #1d4ed8; }
+
+  /* Contact */
+  .contact-section {
+    background: #fff;
+    border-top: 1px solid #e2e8f0;
+  }
+  .contact-inner {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 28px 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .contact-block h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 10px;
+  }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 7px;
+    font-size: 13px;
+    color: #475569;
+  }
+  .contact-icon {
+    width: 28px;
+    height: 28px;
+    background: #eff6ff;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .contact-item strong { color: #0f172a; }
+  .notes-list {
+    list-style: none;
+  }
+  .notes-list li {
+    font-size: 12px;
+    color: #64748b;
+    padding: 3px 0;
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.6;
+  }
+  .notes-list li::before {
+    content: '·';
+    position: absolute;
+    left: 4px;
+    color: #94a3b8;
+  }
+  .notes-list a { color: #2563eb; text-decoration: none; }
+  .notes-list a:hover { text-decoration: underline; }
+
+  /* Footer */
+  footer {
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+    padding: 24px;
+    font-size: 13px;
+    color: #94a3b8;
+  }
+
+  .divider {
+    height: 1px;
+    background: #e2e8f0;
+    max-width: 940px;
+    margin: 0 auto;
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-badge">샵라이브 올인원 광고</div>
+  <h1>같은 라이브라도<br/><span>누가 오느냐</span>가 매출을 결정합니다</h1>
+  <p>단순 트래픽이 아닌, 구매 가능성이 높은 고객 유입에 집중합니다.<br/>제작부터 등록까지 샵라이브가 전담하니, 담당자님은 상품·혜택·기획에만 집중하세요.</p>
+  <a href="https://forms.gle/CEoMgHXkoTxm7yzb6" class="hero-cta">라이브 광고 신청하기 →</a>
+</div>
+
+<!-- Features -->
+<div class="features">
+  <div class="features-grid">
+    <div class="feature-item">
+      <div class="feature-icon">🎯</div>
+      <p><strong>매출 성과 중심</strong><br/>신규 회원 유입과 구매 전환을 목표로 운영</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🤖</div>
+      <p><strong>AI 기반 소재 자동 제작</strong><br/>추가 비용 없이 매체별 최적화 소재 제공</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">📋</div>
+      <p><strong>광고 운영 전체 대행</strong><br/>세팅·운영·최적화·성과 관리까지 전담</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">💳</div>
+      <p><strong>후불 정산</strong><br/>사전 충전 없이 월 단위 후불 정산</p>
+    </div>
+  </div>
+</div>
+
+<!-- Single Products -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-tag tag-single">1️⃣ 단일 광고 상품</div>
+    <h2>원하는 매체만 골라 시작하세요</h2>
+    <p>광고가 처음이거나, 특정 목적 하나에 집중하고 싶은 브랜드에게 적합합니다.</p>
+  </div>
+
+  <div class="cards-grid">
+    <!-- 정밀 타겟팅 -->
+    <div class="product-card">
+      <div class="card-badge badge-purple">정밀 타겟팅</div>
+      <div class="card-channel">리워드 기반 매체 동시 노출</div>
+      <div class="card-title">내 고객과 비슷한 사람에게만 노출</div>
+      <div class="card-divider"></div>
+      <div class="pricing-row">
+        <div class="price-option">
+          <div class="price-label">유니크유저 <span class="price-highlight">3만 명</span></div>
+          <div class="price-amount">30만원</div>
+        </div>
+        <div class="price-option">
+          <div class="price-label">유니크유저 <span class="price-highlight">5만 명</span></div>
+          <div class="price-amount">50만원</div>
+        </div>
+      </div>
+      <div class="card-tag">뷰티 · 패션 · 리빙 타겟 특화</div>
+    </div>
+
+    <!-- 대규모 도달 -->
+    <div class="product-card">
+      <div class="card-badge badge-blue">대규모 도달</div>
+      <div class="card-channel">토스애즈</div>
+      <div class="card-title">전 카테고리, 최대 20만 명까지</div>
+      <div class="card-divider"></div>
+      <div class="pricing-row">
+        <div class="price-option">
+          <div class="price-label"><span class="price-highlight">5만 명</span></div>
+          <div class="price-amount">30만원</div>
+        </div>
+        <div class="price-option">
+          <div class="price-label"><span class="price-highlight">15~20만 명</span></div>
+          <div class="price-amount">150만원</div>
+        </div>
+      </div>
+      <div class="card-tag">대형 이벤트 · 신규 런칭에 추천</div>
+    </div>
+
+    <!-- 구매의도 유저 -->
+    <div class="product-card">
+      <div class="card-badge badge-pink">구매의도 유저</div>
+      <div class="card-channel">올웨이즈 올라이브</div>
+      <div class="card-title">쇼핑 중인 3060 여성에게 도달</div>
+      <div class="card-divider"></div>
+      <div class="pricing-row">
+        <div class="price-option">
+          <div class="price-label"><span class="price-highlight red">5만 명</span></div>
+          <div class="price-amount" style="color:#e11d48;">35만원</div>
+        </div>
+      </div>
+      <div class="card-tag">식품 · 생활 · 리빙 카테고리 최적화</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- Package Products -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-tag tag-package">2️⃣ 패키지 광고 상품</div>
+    <h2>묶을수록 할인율이 높아집니다</h2>
+    <p>한 번의 라이브에서 도달·타겟·전환을 동시에 잡고 싶은 브랜드에게 적합합니다.</p>
+  </div>
+
+  <div class="cards-grid">
+    <!-- 베이직 -->
+    <div class="package-card">
+      <div class="package-name">베이직 패키지</div>
+      <div class="package-desc">라이브 광고가 처음이라면<br/>진입 장벽 없이 시작</div>
+      <div class="package-items">
+        <div class="pkg-item purple">리워드 기반 매체 동시 송출 3만 명</div>
+        <div class="pkg-plus">+</div>
+        <div class="pkg-item blue">토스애즈 베이직 5만 명</div>
+      </div>
+      <div class="package-total">총 8만 명</div>
+      <div class="package-price-row">
+        <span class="discount-badge">5% 할인</span>
+        <span class="original-price">600,000원</span>
+        <span class="final-price">570,000원</span>
+      </div>
+    </div>
+
+    <!-- 스탠다드 (추천) -->
+    <div class="package-card featured">
+      <div class="featured-badge">추천!</div>
+      <div class="package-name">스탠다드 패키지</div>
+      <div class="package-desc">정기 라이브를 운영하는<br/>브랜드의 기본 세팅</div>
+      <div class="package-items">
+        <div class="pkg-item purple">리워드 기반 매체 동시 송출 5만 명</div>
+        <div class="pkg-plus">+</div>
+        <div class="pkg-item blue">토스애즈 베이직 5만 명</div>
+        <div class="pkg-plus">+</div>
+        <div class="pkg-item pink">올웨이즈 올라이브 5만 명</div>
+      </div>
+      <div class="package-total">총 15만 명</div>
+      <div class="package-price-row">
+        <span class="discount-badge">8.7% 할인</span>
+        <span class="original-price">1,150,000원</span>
+        <span class="final-price">1,050,000원</span>
+      </div>
+    </div>
+
+    <!-- 스마트 -->
+    <div class="package-card">
+      <div class="package-name">스마트 패키지</div>
+      <div class="package-desc">대형 캠페인,<br/>대세감이 필요한 브랜드용</div>
+      <div class="package-items">
+        <div class="pkg-item purple">리워드 기반 매체 동시 송출 5만 명</div>
+        <div class="pkg-plus">+</div>
+        <div class="pkg-item blue">토스애즈 플러스 15만 명 이상</div>
+        <div class="pkg-plus">+</div>
+        <div class="pkg-item pink">올웨이즈 올라이브 5만 명</div>
+      </div>
+      <div class="package-total">총 25만 명 이상</div>
+      <div class="package-price-row">
+        <span class="discount-badge">10.6% 할인</span>
+        <span class="original-price">2,350,000원</span>
+        <span class="final-price">2,100,000원</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>올인원으로 모두 다 해드립니다.</h2>
+  <p>제작부터 등록, 운영까지 — 담당자님은 기획에만 집중하세요.</p>
+  <a href="https://forms.gle/CEoMgHXkoTxm7yzb6" class="cta-btn">라이브 올인원 광고 바로 신청하기 →</a>
+</div>
+
+<!-- Contact + Notes -->
+<div class="contact-section">
+  <div class="contact-inner">
+    <div class="contact-block">
+      <h3>📩 광고 신청 및 문의</h3>
+      <div class="contact-item">
+        <div class="contact-icon">👤</div>
+        <div>광고사업팀 · <strong>황유빈 매니저 (Robin)</strong></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div><a href="mailto:ad@shoplivecorp.com" style="color:#2563eb;text-decoration:none;"><strong>ad@shoplivecorp.com</strong></a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div><a href="tel:010-5587-1585" style="color:#0f172a;text-decoration:none;"><strong>010-5587-1585</strong></a></div>
+      </div>
+    </div>
+    <div class="contact-block">
+      <h3>📌 안내 사항</h3>
+      <ul class="notes-list">
+        <li>본 상품은 별도의 대행사 수수료가 포함되지 않은 구조로 운영됩니다.</li>
+        <li>유입자 수는 평균 수치이며, 보장형 광고 상품은 아닙니다.</li>
+        <li>유저의 모바일 환경, 광고 소재, 매체 특성에 따라 결과가 상이할 수 있습니다.</li>
+        <li>매월 1일~말일 이용 내역 기반으로 익월 첫 주에 세금계산서가 발행됩니다.</li>
+        <li>참고: <a href="https://www.youtube.com/watch?v=ylg9kVA2EXk&t=177s" target="_blank">라이브·타겟팅 광고, 유입을 넘어 전환이다 (10분)</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer>
+  © 샵라이브 광고사업팀 · <a href="mailto:ad@shoplivecorp.com" style="color:#64748b;">ad@shoplivecorp.com</a>
+</footer>
+
+</body>
+</html>
