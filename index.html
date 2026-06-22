@@ -209,6 +209,8 @@
     padding: 20px;
     border: 1px solid #e2e8f0;
     position: relative;
+    display: flex;
+    flex-direction: column;
   }
   .package-card.featured {
     border: 2px solid #2563eb;
@@ -241,6 +243,7 @@
     flex-direction: column;
     gap: 3px;
     margin-bottom: 14px;
+    flex: 1;
   }
   .pkg-item {
     font-size: 15px;
@@ -312,10 +315,10 @@
     display: inline-block;
     background: #2563eb;
     color: #fff;
-    font-size: 15px;
+    font-size: 22px;
     font-weight: 700;
-    padding: 11px 30px;
-    border-radius: 10px;
+    padding: 17px 45px;
+    border-radius: 12px;
     text-decoration: none;
     transition: background 0.2s;
   }
@@ -417,7 +420,7 @@
     </div>
     <div class="feature-item">
       <div class="feature-icon">🤖</div>
-      <p><strong>AI 기반 소재 자동 제작</strong><br/>추가 비용 없이 매체별 최적화 소재 제공</p>
+      <p><strong>AI 기반 소재 제작</strong><br/>추가 비용 없이 매체별 최적화 소재 제공</p>
     </div>
     <div class="feature-item">
       <div class="feature-icon">📋</div>
@@ -447,12 +450,12 @@
       <div class="card-divider"></div>
       <div class="pricing-row">
         <div class="price-option">
-          <div class="price-label">유니크유저 <span class="price-highlight">3만 명</span></div>
-          <div class="price-amount">30만원</div>
+          <div class="price-label">유니크유저 <span class="price-highlight" style="color:#7c3aed;">3만 명</span></div>
+          <div class="price-amount" style="color:#7c3aed;">30만원</div>
         </div>
         <div class="price-option">
-          <div class="price-label">유니크유저 <span class="price-highlight">5만 명</span></div>
-          <div class="price-amount">50만원</div>
+          <div class="price-label">유니크유저 <span class="price-highlight" style="color:#7c3aed;">5만 명</span></div>
+          <div class="price-amount" style="color:#7c3aed;">50만원</div>
         </div>
       </div>
       <div class="card-tag">뷰티 · 패션 · 리빙 타겟 특화</div>
@@ -467,11 +470,11 @@
       <div class="pricing-row">
         <div class="price-option">
           <div class="price-label"><span class="price-highlight">5만 명</span></div>
-          <div class="price-amount">30만원</div>
+          <div class="price-amount" style="color:#2563eb;">30만원</div>
         </div>
         <div class="price-option">
           <div class="price-label"><span class="price-highlight">15~20만 명</span></div>
-          <div class="price-amount">150만원</div>
+          <div class="price-amount" style="color:#2563eb;">150만원</div>
         </div>
       </div>
       <div class="card-tag">대형 이벤트 · 신규 런칭에 추천</div>
