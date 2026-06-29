@@ -78,7 +78,8 @@
     text-decoration: none;
     transition: background 0.2s;
   }
-  .hero-cta:hover { background: #1d4ed8; }
+  .hero-cta:hover { background: #1d4ed8; transform: scale(1.04); }
+  .hero-cta { transition: background 0.2s, transform 0.2s; }
 
   /* Features */
   .features {
@@ -162,6 +163,11 @@
     border: 1px solid #e2e8f0;
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .product-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
   }
   .card-badge {
     display: inline-block;
@@ -235,10 +241,20 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .package-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
   }
   .package-card.featured {
     border: 2px solid #2563eb;
     box-shadow: 0 2px 12px rgba(37,99,235,0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .package-card.featured:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 20px rgba(37,99,235,0.25);
   }
   .featured-badge {
     position: absolute;
@@ -347,7 +363,7 @@
     text-decoration: none;
     transition: background 0.2s;
   }
-  .cta-btn:hover { background: #1d4ed8; }
+  .cta-btn:hover { background: #1d4ed8; transform: scale(1.04); }
 
   /* Contact */
   .contact-section {
@@ -463,10 +479,12 @@
   <div class="site-header">
     <img src="logo.png" alt="shoplive"/>
   </div>
-  <div class="hero-badge fade-item">샵라이브 올인원 광고</div>
-  <h1 class="fade-item">같은 라이브라도<br/><span>누가 오느냐</span>가 매출을 결정합니다</h1>
-  <p class="fade-item">단순 트래픽이 아닌, 구매 가능성이 높은 고객 유입에 집중합니다.<br/>제작부터 등록까지 샵라이브가 전담하니, 담당자님은 상품·혜택·기획에만 집중하세요.</p>
-  <a href="https://forms.gle/CEoMgHXkoTxm7yzb6" class="hero-cta fade-item">라이브 광고 신청하기 →</a>
+  <div class="fade-item" style="animation-delay:0s">
+    <div class="hero-badge">샵라이브 올인원 광고</div>
+    <h1>같은 라이브라도<br/><span>누가 오느냐</span>가 매출을 결정합니다</h1>
+    <p>단순 트래픽이 아닌, 구매 가능성이 높은 고객 유입에 집중합니다.<br/>제작부터 등록까지 샵라이브가 전담하니, 담당자님은 상품·혜택·기획에만 집중하세요.</p>
+  </div>
+  <a href="https://forms.gle/CEoMgHXkoTxm7yzb6" class="hero-cta fade-item" style="animation-delay:0.35s">라이브 광고 신청하기 →</a>
 </div>
 
 <!-- Features -->
@@ -629,10 +647,10 @@
 </div><!-- /dark-zone -->
 
 <!-- CTA -->
-<div class="cta-section fade-item">
-  <h2>올인원으로 모두 다 해드립니다.</h2>
-  <p>제작부터 등록, 운영까지 맡기고 담당자님은 기획에만 집중하세요.</p>
-  <a href="https://forms.gle/CEoMgHXkoTxm7yzb6" class="cta-btn">라이브 광고 신청하기 →</a>
+<div class="cta-section">
+  <h2 class="fade-item" style="animation-duration:0.25s !important; animation-delay:0s !important">올인원으로 모두 다 해드립니다.</h2>
+  <p class="fade-item" style="animation-duration:0.25s !important; animation-delay:0.06s !important">제작부터 등록, 운영까지 맡기고 담당자님은 기획에만 집중하세요.</p>
+  <a href="https://forms.gle/CEoMgHXkoTxm7yzb6" class="cta-btn fade-item" style="animation-duration:0.25s !important; animation-delay:0.12s !important">라이브 광고 신청하기 →</a>
 </div>
 
 <!-- Contact + Notes -->
