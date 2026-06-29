@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>샵라이브 올인원 광고 - FAQ</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"/>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f7f8fa;
+    color: #1a1a2e;
+    line-height: 1.6;
+    zoom: 1.25;
+  }
+
+  /* Hero */
+  .hero {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 52px 24px 44px;
+    text-align: center;
+    position: relative;
+  }
+  .site-header {
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    pointer-events: none;
+    user-select: none;
+  }
+  .site-header img { height: 28px; width: auto; }
+  .hero-badge {
+    display: inline-block;
+    background: #eff6ff;
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    letter-spacing: 0.3px;
+  }
+  .hero h1 {
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+  }
+  .hero p {
+    font-size: 15px;
+    color: #475569;
+    margin-bottom: 24px;
+  }
+  .back-btn {
+    display: inline-block;
+    background: transparent;
+    color: #2563eb;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 8px;
+    border: 1.5px solid #2563eb;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+  }
+  .back-btn:hover { background: #2563eb; color: #fff; transform: scale(1.04); }
+
+  /* FAQ Section */
+  .faq-section {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  .faq-item {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  .faq-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.09);
+  }
+  .faq-item.open {
+    border-color: #bfdbfe;
+    box-shadow: 0 4px 16px rgba(37,99,235,0.1);
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    gap: 16px;
+  }
+  .faq-question-text {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.5;
+  }
+  .faq-item.open .faq-question-text {
+    color: #2563eb;
+  }
+  .faq-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #eff6ff;
+    color: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 300;
+    flex-shrink: 0;
+    transition: transform 0.3s, background 0.2s;
+    line-height: 1;
+  }
+  .faq-item.open .faq-icon {
+    transform: rotate(45deg);
+    background: #2563eb;
+    color: #fff;
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.3s ease;
+    padding: 0 24px;
+  }
+  .faq-item.open .faq-answer {
+    max-height: 400px;
+    padding: 0 24px 20px;
+  }
+  .faq-answer-inner {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 16px;
+    font-size: 14px;
+    color: #475569;
+    line-height: 1.8;
+    white-space: pre-line;
+  }
+
+  /* CTA */
+  .cta-section {
+    background: #eff6ff;
+    padding: 44px 24px;
+    text-align: center;
+  }
+  .cta-section h2 {
+    font-size: clamp(18px, 3vw, 26px);
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 8px;
+  }
+  .cta-section p {
+    color: #475569;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: #2563eb;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 700;
+    padding: 17px 45px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .cta-btn:hover { background: #1d4ed8; transform: scale(1.04); }
+
+  /* Footer */
+  footer {
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+    color: #94a3b8;
+  }
+
+  /* Fade animation */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-item { opacity: 0; }
+  .fade-item.visible {
+    animation: fadeInUp 0.4s ease forwards;
+  }
+
+  /* FAQ image */
+  .faq-img-preview {
+    display: block;
+    margin-top: 14px;
+    max-width: 100%;
+    border-radius: 10px;
+    cursor: zoom-in;
+    border: 1px solid #e2e8f0;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .faq-img-preview:hover {
+    transform: scale(1.01);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  }
+
+  /* Image popup overlay */
+  .img-popup-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+    padding: 24px;
+  }
+  .img-popup-overlay.active { display: flex; }
+  .img-popup-overlay img {
+    max-width: min(700px, 92vw);
+    max-height: 88vh;
+    border-radius: 12px;
+    object-fit: contain;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+    animation: popupIn 0.2s ease;
+  }
+  @keyframes popupIn {
+    from { opacity: 0; transform: scale(0.93); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  .img-popup-close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    color: #fff;
+    font-size: 28px;
+    font-weight: 300;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.8;
+  }
+  .img-popup-close:hover { opacity: 1; }
+
+  @media (max-width: 600px) {
+    body { zoom: 1; }
+    .hero { padding: 48px 20px 36px; }
+    .faq-section { padding: 32px 16px 60px; }
+    .faq-question { padding: 16px 18px; }
+    .faq-question-text { font-size: 14px; word-break: keep-all; }
+    .faq-answer { padding: 0 18px; }
+    .faq-item.open .faq-answer { padding: 0 18px 16px; }
+    .faq-answer-inner { word-break: keep-all; }
+    .hero p { word-break: keep-all; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Image popup -->
+<div class="img-popup-overlay" id="imgPopup" onclick="closeImgPopup()">
+  <span class="img-popup-close" onclick="closeImgPopup()">✕</span>
+  <img id="imgPopupImg" src="" alt=""/>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="site-header">
+    <img src="logo.png" alt="shoplive"/>
+  </div>
+  <div class="hero-badge fade-item">샵라이브 올인원 광고</div>
+  <h1 class="fade-item">자주 묻는 질문</h1>
+  <p class="fade-item">궁금하신 내용을 클릭하시면 답변을 확인하실 수 있습니다.</p>
+  <a href="index.html" class="back-btn fade-item">← 광고 상품 보러가기</a>
+</div>
+
+<!-- FAQ -->
+<div class="faq-section">
+
+  <div class="faq-item fade-item">
+    <div class="faq-question">
+      <span class="faq-question-text">샵라이브 솔루션을 쓰지 않아도 광고 집행이 가능한가요? / 대행사 수수료가 별도로 붙나요?</span>
+      <div class="faq-icon">+</div>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">샵라이브 솔루션을 사용하지 않는 브랜드도 광고 집행이 가능합니다.
+라이브 URL(네쇼라, 카쇼라 등)만 있으면 신청하실 수 있으며, 솔루션 도입 여부와 무관하게 동일한 조건으로 운영됩니다.
+본 상품에는 대행 수수료를 포함하고 있지 않지만, 이와 관련하여 궁금하신 것이 있다면 별도로 연락 부탁드립니다.
+연락처: 010-5587-1558</div>
+    </div>
+  </div>
+
+  <div class="faq-item fade-item">
+    <div class="faq-question">
+      <span class="faq-question-text">광고 집행 전까지 며칠이 필요한가요?</span>
+      <div class="faq-icon">+</div>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">신청 후 최소 영업일 기준 2일 전 18시까지 매체 등록이 완료되어야 합니다.
+따라서 라이브 일정이 확정되셨다면 소재 제작 의뢰 시 영업일 기준 4일 전까지 신청 바라며,
+7일 여유를 두고 신청하시는 것을 권장드립니다.
+소재 제작도 샵라이브가 전담하므로 별도 준비 없이 방송 일정과 상품 정보만 전달해 주시면 됩니다.</div>
+    </div>
+  </div>
+
+  <div class="faq-item fade-item">
+    <div class="faq-question">
+      <span class="faq-question-text">광고 소재 시안을 사전에 확인하고 수정할 수 있나요?</span>
+      <div class="faq-icon">+</div>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">네, 집행 전 시안을 공유드리며, 영업일 기준 2일 전 18시까지 수정 피드백을 반영해 드립니다.
+소재는 각 매체 특성에 맞게 최적화하여 제작되며, 추가 제작 비용은 없습니다.
+브랜드 가이드라인이 있으시면 신청 시 함께 전달해 주세요.</div>
+    </div>
+  </div>
+
+  <div class="faq-item fade-item">
+    <div class="faq-question">
+      <span class="faq-question-text">광고가 어떤 위치·지면에 노출되나요?</span>
+      <div class="faq-icon">+</div>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">타겟팅 광고의 경우, 타겟으로 설정된 유저에게만 노출되어 직접 확인이 어렵습니다. (논타겟팅 광고는 직접 확인 가능)
+모든 광고는 앱 내 버튼 클릭 시 라이브 방송 화면으로 직접 연결됩니다.
+<img src="faq-ad-example.png" alt="광고 노출 예시" class="faq-img-preview" onclick="openImgPopup(this)"/></div>
+    </div>
+  </div>
+
+  <div class="faq-item fade-item">
+    <div class="faq-question">
+      <span class="faq-question-text">유입자 수가 보장되나요, 아니면 평균 수치인가요?</span>
+      <div class="faq-icon">+</div>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">안내드리는 유입자 수는 평균 수치이며, 수량을 100% 보장하는 보장형 상품은 아닙니다.
+다만 유니크 클릭 방식으로 운영되어 중복 유입이 제거되며, 실제 집행 사례 기준으로 안내 수치에 근접한 성과가 나옵니다.
+유저의 모바일 환경, 광고 소재 퀄리티, 매체 상황에 따라 결과는 달라질 수 있습니다.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- CTA -->
+<div class="cta-section fade-item" style="animation-delay:0s !important">
+  <h2>올인원으로 모두 다 해드립니다.</h2>
+  <p>제작부터 등록, 운영까지 맡기고 담당자님은 기획에만 집중하세요.</p>
+  <a href="https://forms.gle/CEoMgHXkoTxm7yzb6" class="cta-btn">라이브 광고 신청하기 →</a>
+</div>
+
+<footer>
+  © 샵라이브 광고사업팀 · <a href="mailto:ad@shoplivecorp.com" style="color:#64748b;">ad@shoplivecorp.com</a>
+</footer>
+
+<script>
+  // Image popup
+  function openImgPopup(img) {
+    document.getElementById('imgPopupImg').src = img.src;
+    document.getElementById('imgPopup').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeImgPopup() {
+    document.getElementById('imgPopup').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeImgPopup(); });
+
+  // Accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-question').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // Fade-in
+  const items = document.querySelectorAll('.fade-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const siblings = [...entry.target.parentElement.querySelectorAll('.fade-item')];
+        const index = siblings.indexOf(entry.target);
+        entry.target.style.animationDelay = (index * 0.08) + 's';
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  items.forEach(item => observer.observe(item));
+</script>
+
+</body>
+</html>
