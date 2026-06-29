@@ -201,19 +201,24 @@
     animation: fadeInUp 0.4s ease forwards;
   }
 
-  /* FAQ image */
-  .faq-img-preview {
-    display: block;
+  /* FAQ image button */
+  .faq-img-btn {
+    display: inline-block;
     margin-top: 14px;
-    max-width: 100%;
-    border-radius: 10px;
-    cursor: zoom-in;
-    border: 1px solid #e2e8f0;
-    transition: transform 0.2s, box-shadow 0.2s;
+    background: #eff6ff;
+    color: #2563eb;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 8px;
+    border: 1.5px solid #bfdbfe;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
   }
-  .faq-img-preview:hover {
-    transform: scale(1.01);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  .faq-img-btn:hover {
+    background: #dbeafe;
+    transform: scale(1.03);
   }
 
   /* Image popup overlay */
@@ -335,7 +340,7 @@
     <div class="faq-answer">
       <div class="faq-answer-inner">타겟팅 광고의 경우, 타겟으로 설정된 유저에게만 노출되어 직접 확인이 어렵습니다. (논타겟팅 광고는 직접 확인 가능)
 모든 광고는 앱 내 버튼 클릭 시 라이브 방송 화면으로 직접 연결됩니다.
-<img src="faq-ad-example.png" alt="광고 노출 예시" class="faq-img-preview" onclick="openImgPopup(this)"/></div>
+<button class="faq-img-btn" onclick="openImgPopup('faq-ad-example.png')">📷 논타겟팅 광고 노출지면</button></div>
     </div>
   </div>
 
@@ -366,8 +371,8 @@
 
 <script>
   // Image popup
-  function openImgPopup(img) {
-    document.getElementById('imgPopupImg').src = img.src;
+  function openImgPopup(src) {
+    document.getElementById('imgPopupImg').src = src;
     document.getElementById('imgPopup').classList.add('active');
     document.body.style.overflow = 'hidden';
   }
