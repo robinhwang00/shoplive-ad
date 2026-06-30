@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>토스애즈 라이브마켓 광고 — 샵라이브 올인원 광고</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"/>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f7f8fa;
+    color: #1a1a2e;
+    line-height: 1.6;
+    zoom: 1.25;
+  }
+
+  .site-header {
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    pointer-events: none;
+    user-select: none;
+  }
+  .site-header img { height: 28px; width: auto; }
+
+  /* Hero */
+  .hero {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 72px 24px 60px;
+    text-align: center;
+    position: relative;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: #eff6ff;
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    letter-spacing: 0.3px;
+  }
+  .back-btn {
+    display: inline-block;
+    background: transparent;
+    color: #2563eb;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 8px;
+    border: 1.5px solid #2563eb;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    margin-bottom: 28px;
+  }
+  .back-btn:hover { background: #2563eb; color: #fff; transform: scale(1.04); }
+  .hero h1 {
+    font-size: clamp(28px, 4.5vw, 44px);
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+  .hero h1 span { color: #2563eb; }
+  .hero p {
+    font-size: 16px;
+    color: #475569;
+    max-width: 560px;
+    margin: 0 auto 24px;
+    line-height: 1.7;
+  }
+
+  /* Stat Bar */
+  .stat-bar {
+    background: #eff6ff;
+    padding: 20px 24px;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    max-width: 940px;
+    margin: 0 auto;
+  }
+  .stat-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px 18px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .stat-item:hover { transform: scale(1.03); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+  .stat-value { font-size: 22px; font-weight: 800; color: #2563eb; line-height: 1.2; }
+  .stat-desc { font-size: 12px; color: #64748b; margin-top: 4px; font-weight: 500; }
+
+  /* Features */
+  .features {
+    background: #eff6ff;
+    padding: 0 24px 28px;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    max-width: 940px;
+    margin: 0 auto;
+  }
+  .feature-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 22px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .feature-item:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+  .feature-icon { font-size: 26px; line-height: 1; flex-shrink: 0; }
+  .feature-item p { font-size: 14px; color: #334155; font-weight: 500; line-height: 1.55; }
+  .feature-item strong { color: #0f172a; }
+
+  /* Section */
+  .section {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+  .section-label {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    background: #eff6ff;
+    color: #2563eb;
+  }
+  .section h2 {
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 6px;
+  }
+  .section-sub { font-size: 14px; color: #64748b; margin-bottom: 24px; }
+
+  /* Pricing Cards */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-top: 8px;
+  }
+  .price-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 24px 22px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .price-card:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(0,0,0,0.09); }
+  .price-card.featured {
+    border: 2px solid #2563eb;
+    box-shadow: 0 2px 12px rgba(37,99,235,0.12);
+  }
+  .price-card.featured:hover { box-shadow: 0 6px 20px rgba(37,99,235,0.22); }
+  .featured-badge {
+    position: absolute;
+    top: -12px; right: 18px;
+    background: #e11d48;
+    color: #fff;
+    font-size: 12px; font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 20px;
+  }
+  .price-card-title { font-size: 18px; font-weight: 800; color: #0f172a; margin-bottom: 2px; }
+  .price-card-sub { font-size: 13px; color: #94a3b8; margin-bottom: 14px; }
+  .price-divider { height: 1px; background: #f1f5f9; margin: 12px 0; }
+  .price-row { display: flex; flex-direction: column; gap: 2px; margin-bottom: 8px; }
+  .price-label { font-size: 12px; color: #64748b; }
+  .price-amount { font-size: 30px; font-weight: 800; color: #0f172a; }
+  .price-amount.promo { color: #2563eb; }
+  .price-unit { font-size: 14px; font-weight: 600; color: #64748b; margin-left: 2px; }
+  .price-original {
+    font-size: 14px;
+    color: #94a3b8;
+    text-decoration: line-through;
+    margin-bottom: 2px;
+  }
+  .price-promo-badge {
+    display: inline-block;
+    background: #dcfce7;
+    color: #16a34a;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 6px;
+    margin-left: 6px;
+  }
+  .price-note {
+    margin-top: auto;
+    padding-top: 10px;
+    font-size: 12px;
+    color: #64748b;
+    background: #f8fafc;
+    padding: 6px 10px;
+    border-radius: 6px;
+    line-height: 1.5;
+  }
+
+  /* Process */
+  .process-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    margin-top: 8px;
+  }
+  .process-step {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px 18px;
+    text-align: center;
+    flex: 1;
+    min-width: 120px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .process-step-day {
+    font-size: 13px;
+    font-weight: 800;
+    color: #2563eb;
+    margin-bottom: 4px;
+  }
+  .process-step-desc {
+    font-size: 13px;
+    font-weight: 600;
+    color: #0f172a;
+    line-height: 1.4;
+  }
+  .process-arrow {
+    font-size: 18px;
+    color: #cbd5e1;
+    padding: 0 8px;
+    flex-shrink: 0;
+  }
+
+  /* Notes */
+  .notes-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-top: 20px;
+  }
+  .notes-box ul { list-style: none; }
+  .notes-box li {
+    font-size: 13px;
+    color: #475569;
+    padding: 4px 0 4px 14px;
+    position: relative;
+    line-height: 1.6;
+  }
+  .notes-box li::before { content: '·'; position: absolute; left: 4px; color: #94a3b8; }
+
+  /* CTA */
+  .cta-section {
+    background: #eff6ff;
+    padding: 52px 24px;
+    text-align: center;
+  }
+  .cta-section h2 { font-size: clamp(20px, 3vw, 30px); font-weight: 800; color: #0f172a; margin-bottom: 8px; }
+  .cta-section p { color: #475569; font-size: 14px; margin-bottom: 22px; }
+  .cta-btn-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .back-link-btn {
+    display: inline-block;
+    background: transparent;
+    color: #2563eb;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: 1.5px solid #2563eb;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    white-space: nowrap;
+  }
+  .back-link-btn:hover { background: #2563eb; color: #fff; transform: scale(1.04); }
+  /* Hero title with logo */
+  .hero-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .hero-title-row h1 { margin-bottom: 0; }
+  .hero-platform-logo { height: 1em; width: auto; vertical-align: middle; }
+  .cta-btn {
+    display: inline-block;
+    background: #2563eb;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 16px 44px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .cta-btn:hover { background: #1d4ed8; transform: scale(1.04); }
+
+  /* Contact */
+  .contact-section { background: #fff; border-top: 1px solid #e2e8f0; }
+  .contact-inner {
+    max-width: 940px; margin: 0 auto; padding: 28px 24px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;
+  }
+  .contact-block h3 { font-size: 15px; font-weight: 700; color: #0f172a; margin-bottom: 10px; }
+  .contact-item { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; font-size: 13px; color: #475569; }
+  .contact-icon {
+    width: 28px; height: 28px; background: #eff6ff; border-radius: 7px;
+    display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0;
+  }
+  .contact-item strong { color: #0f172a; }
+  .notes-list { list-style: none; }
+  .notes-list li { font-size: 12px; color: #64748b; padding: 3px 0 3px 14px; position: relative; line-height: 1.6; }
+  .notes-list li::before { content: '·'; position: absolute; left: 4px; color: #94a3b8; }
+
+  footer {
+    background: #f8fafc; border-top: 1px solid #e2e8f0;
+    text-align: center; padding: 24px; font-size: 13px; color: #94a3b8;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-item { opacity: 0; }
+  .fade-item.visible { animation: fadeInUp 0.4s ease forwards; }
+
+  .feature-item p,
+  .stat-desc,
+  .price-card-title,
+  .price-card-sub,
+  .price-note,
+  .process-step-desc,
+  .notes-box li,
+  .notes-list li { word-break: keep-all; }
+
+  @media (max-width: 600px) {
+    body { zoom: 1; }
+    .hero { padding: 52px 20px 44px; }
+    .hero h1 { font-size: 26px; word-break: keep-all; }
+    .hero p { word-break: keep-all; }
+    .section { padding: 32px 16px; }
+    .process-row { gap: 4px; }
+    .process-step { min-width: 90px; padding: 12px 10px; }
+    .cta-btn { font-size: 17px; padding: 14px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="site-header"><img src="logo.png" alt="shoplive"/></div>
+  <div class="hero-badge fade-item">단일 광고 상품 · 대규모 도달</div>
+  <div class="hero-title-row fade-item">
+    <img src="tossads-logo.png" alt="토스애즈" class="hero-platform-logo"/>
+    <h1>토스애즈 <span>라이브마켓</span> 광고</h1>
+  </div>
+  <p class="fade-item">목표하는 시청자 확보로 매출 증대 달성</p>
+</div>
+
+<!-- Stats -->
+<div class="stat-bar">
+  <div class="stat-grid">
+    <div class="stat-item fade-item">
+      <div class="stat-value">20만+</div>
+      <div class="stat-desc">최대 예상 유입 인원</div>
+    </div>
+    <div class="stat-item fade-item">
+      <div class="stat-value">3,800만</div>
+      <div class="stat-desc">토스 가입자 수</div>
+    </div>
+    <div class="stat-item fade-item">
+      <div class="stat-value">2040 64%</div>
+      <div class="stat-desc">핵심 구매 연령 비율</div>
+    </div>
+    <div class="stat-item fade-item">
+      <div class="stat-value">방송 1회</div>
+      <div class="stat-desc">과금 단위 (VAT 별도)</div>
+    </div>
+  </div>
+</div>
+
+<!-- Features -->
+<div class="features">
+  <div class="features-grid">
+    <div class="feature-item fade-item">
+      <div class="feature-icon">🚀</div>
+      <p><strong>대규모 도달 최적화</strong><br/>전 카테고리 대상, 최대 20만 명 이상 유입</p>
+    </div>
+    <div class="feature-item fade-item">
+      <div class="feature-icon">🎯</div>
+      <p><strong>대형 이벤트·신규 런칭</strong><br/>폭발적인 초기 트래픽이 필요한 브랜드에 최적</p>
+    </div>
+    <div class="feature-item fade-item">
+      <div class="feature-icon">💳</div>
+      <p><strong>3,800만 토스 유저</strong><br/>2040 비율 64%, 금융 기반 고소득 구매층</p>
+    </div>
+    <div class="feature-item fade-item">
+      <div class="feature-icon">📋</div>
+      <p><strong>D+1 성과 보고서</strong><br/>방송 다음날 오전 시청·클릭 지표 리포트 제공</p>
+    </div>
+  </div>
+</div>
+
+<!-- Pricing -->
+<div style="background:#fff;">
+  <div class="section">
+    <span class="section-label fade-item">가격표</span>
+    <h2 class="fade-item">목표 시청자 규모에 맞게 선택</h2>
+    <p class="section-sub fade-item">방송 1회당 과금. 골든타임(오전 10~12시, 오후 19~21시) 할증 20% 적용. 모든 가격은 VAT 별도.</p>
+    <div class="pricing-grid">
+      <div class="price-card featured fade-item">
+        <div class="featured-badge">프로모션</div>
+        <div class="price-card-title">베이직</div>
+        <div class="price-card-sub">소규모 집중 노출</div>
+        <div class="price-divider"></div>
+        <div class="price-row">
+          <span class="price-label">예상 시청 인원</span>
+          <span><span class="price-amount">약 5만</span><span class="price-unit">명</span></span>
+        </div>
+        <div class="price-divider"></div>
+        <div class="price-row">
+          <span class="price-label">광고비 (VAT 별도)</span>
+          <div>
+            <div class="price-original">60만원</div>
+            <span><span class="price-amount promo">30만</span><span class="price-unit">원</span><span class="price-promo-badge">프로모션가</span></span>
+          </div>
+        </div>
+        <div class="price-note">※ 평일 한정 프로모션가 적용</div>
+      </div>
+      <div class="price-card fade-item">
+        <div class="price-card-title">플러스</div>
+        <div class="price-card-sub">중대형 도달</div>
+        <div class="price-divider"></div>
+        <div class="price-row">
+          <span class="price-label">예상 시청 인원</span>
+          <span><span class="price-amount">15~20만</span><span class="price-unit">명</span></span>
+        </div>
+        <div class="price-divider"></div>
+        <div class="price-row">
+          <span class="price-label">광고비 (VAT 별도)</span>
+          <span><span class="price-amount">150만</span><span class="price-unit">원</span></span>
+        </div>
+        <div class="price-note">골든타임 할증 20% / 주말 할인 15%</div>
+      </div>
+      <div class="price-card fade-item">
+        <div class="price-card-title">프리미엄</div>
+        <div class="price-card-sub">최대 규모 도달</div>
+        <div class="price-divider"></div>
+        <div class="price-row">
+          <span class="price-label">예상 시청 인원</span>
+          <span><span class="price-amount">27~28만</span><span class="price-unit">명</span></span>
+        </div>
+        <div class="price-divider"></div>
+        <div class="price-row">
+          <span class="price-label">광고비 (VAT 별도)</span>
+          <span><span class="price-amount">200만</span><span class="price-unit">원</span></span>
+        </div>
+        <div class="price-note">골든타임 할증 20% / 주말 할인 15%</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Process -->
+<div style="background:#f7f8fa;">
+  <div class="section">
+    <span class="section-label fade-item">집행 프로세스</span>
+    <h2 class="fade-item">간단하고 빠른 3단계</h2>
+    <p class="section-sub fade-item">소재 제작은 샵라이브가 전담합니다. 방송 일정과 상품 정보만 전달해 주세요.</p>
+    <div class="process-row fade-item">
+      <div class="process-step">
+        <div class="process-step-day">D-2</div>
+        <div class="process-step-desc">소재 등록</div>
+      </div>
+      <div class="process-arrow">→</div>
+      <div class="process-step">
+        <div class="process-step-day">D-day</div>
+        <div class="process-step-desc">광고 집행</div>
+      </div>
+      <div class="process-arrow">→</div>
+      <div class="process-step">
+        <div class="process-step-day">D+1 오전</div>
+        <div class="process-step-desc">성과 보고서 제공</div>
+      </div>
+    </div>
+    <div class="notes-box fade-item">
+      <ul>
+        <li>골든타임 기준: 오전 10~12시, 오후 19~21시 (할증 20% 적용)</li>
+        <li>예상 시청 인원 수치는 평균값이며, 보장형 상품이 아닙니다.</li>
+        <li>광고 집행은 라이브 일정 기준 영업일 4일 전까지 신청 권장.</li>
+        <li>모든 일정은 영업일 기준입니다.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2 class="fade-item" style="animation-duration:0.25s !important; animation-delay:0s !important">대규모 도달로 라이브 매출을 극대화하세요.</h2>
+  <p class="fade-item" style="animation-duration:0.25s !important; animation-delay:0.07s !important">제작부터 등록, 운영까지 맡기고 담당자님은 기획에만 집중하세요.</p>
+  <div class="cta-btn-group fade-item" style="animation-duration:0.25s !important; animation-delay:0.14s !important">
+    <a href="index.html" class="back-link-btn">← 광고 상품 보러가기</a>
+    <a href="https://forms.gle/CEoMgHXkoTxm7yzb6" class="cta-btn">라이브 광고 신청하기 →</a>
+  </div>
+</div>
+
+<!-- Contact -->
+<div class="contact-section">
+  <div class="contact-inner">
+    <div class="contact-block">
+      <h3>📩 광고 신청 및 문의</h3>
+      <div class="contact-item">
+        <div class="contact-icon">👤</div>
+        <span><strong>Robin Hwang</strong> · 광고사업팀</span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <span>ad@shoplivecorp.com</span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <span>010-5587-1558</span>
+      </div>
+    </div>
+    <div class="contact-block">
+      <h3>📋 안내사항</h3>
+      <ul class="notes-list">
+        <li>안내드리는 유입자 수는 평균 수치이며, 보장형 상품이 아닙니다.</li>
+        <li>베이직 30만원은 평일 한정 프로모션가입니다.</li>
+        <li>골든타임(오전 10~12시, 오후 19~21시) 할증 20% 별도 적용.</li>
+        <li>소재 제작은 샵라이브가 전담하며 별도 비용이 없습니다.</li>
+        <li>모든 금액은 VAT 별도입니다.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer>
+  © 샵라이브 광고사업팀 · <a href="mailto:ad@shoplivecorp.com" style="color:#64748b;">ad@shoplivecorp.com</a>
+</footer>
+
+<script>
+  const items = document.querySelectorAll('.fade-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const siblings = [...entry.target.parentElement.querySelectorAll('.fade-item')];
+        const index = siblings.indexOf(entry.target);
+        entry.target.style.animationDelay = entry.target.style.animationDelay || (index * 0.08) + 's';
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  items.forEach(item => observer.observe(item));
+</script>
+</body>
+</html>

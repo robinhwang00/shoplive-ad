@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>올웨이즈 올라이브 광고 — 샵라이브 올인원 광고</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"/>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f7f8fa;
+    color: #1a1a2e;
+    line-height: 1.6;
+    zoom: 1.25;
+  }
+
+  .site-header {
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    pointer-events: none;
+    user-select: none;
+  }
+  .site-header img { height: 28px; width: auto; }
+
+  /* Hero */
+  .hero {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 72px 24px 60px;
+    text-align: center;
+    position: relative;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: #fff1f2;
+    color: #e11d48;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    letter-spacing: 0.3px;
+  }
+  .back-btn {
+    display: inline-block;
+    background: transparent;
+    color: #e11d48;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 8px;
+    border: 1.5px solid #e11d48;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    margin-bottom: 28px;
+  }
+  .back-btn:hover { background: #e11d48; color: #fff; transform: scale(1.04); }
+  .hero h1 {
+    font-size: clamp(28px, 4.5vw, 44px);
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+  .hero h1 span { color: #e11d48; }
+  .hero p {
+    font-size: 16px;
+    color: #475569;
+    max-width: 580px;
+    margin: 0 auto 24px;
+    line-height: 1.7;
+  }
+
+  /* Stat Bar */
+  .stat-bar {
+    background: #fff1f2;
+    padding: 20px 24px;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    max-width: 940px;
+    margin: 0 auto;
+  }
+  .stat-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px 18px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .stat-item:hover { transform: scale(1.03); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+  .stat-value {
+    font-size: 24px;
+    font-weight: 800;
+    color: #e11d48;
+    line-height: 1.2;
+  }
+  .stat-desc {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
+  /* Features */
+  .features {
+    background: #fff1f2;
+    padding: 0 24px 28px;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    max-width: 940px;
+    margin: 0 auto;
+  }
+  .feature-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 22px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .feature-item:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+  .feature-icon { font-size: 26px; line-height: 1; flex-shrink: 0; }
+  .feature-item p { font-size: 14px; color: #334155; font-weight: 500; line-height: 1.55; }
+  .feature-item strong { color: #0f172a; }
+
+  /* Section */
+  .section {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+  .section-label {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    background: #fff1f2;
+    color: #e11d48;
+  }
+  .section h2 {
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 6px;
+  }
+  .section-sub {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 24px;
+  }
+
+  /* Persona */
+  .persona-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  .persona-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .persona-card:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(0,0,0,0.09); }
+  .persona-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #e11d48;
+    background: #fff1f2;
+    padding: 3px 10px;
+    border-radius: 6px;
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+  .persona-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .persona-list li {
+    font-size: 13px;
+    color: #334155;
+    font-weight: 600;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    line-height: 1.4;
+  }
+  .persona-list li::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #fda4af;
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+  .persona-list li span { font-weight: 400; color: #64748b; }
+
+  /* Pricing */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+    margin-top: 8px;
+  }
+  .price-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 24px 22px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+  .price-card:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(0,0,0,0.09); }
+  .price-card.featured {
+    border: 2px solid #e11d48;
+    box-shadow: 0 2px 12px rgba(225,29,72,0.1);
+  }
+  .price-card.featured:hover { box-shadow: 0 6px 20px rgba(225,29,72,0.2); }
+  .featured-badge {
+    position: absolute;
+    top: -12px;
+    right: 18px;
+    background: #e11d48;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 20px;
+  }
+  .price-card-title { font-size: 16px; font-weight: 700; color: #0f172a; margin-bottom: 4px; }
+  .price-card-sub { font-size: 13px; color: #94a3b8; margin-bottom: 14px; }
+  .price-divider { height: 1px; background: #f1f5f9; margin: 12px 0; }
+  .price-row { display: flex; flex-direction: column; gap: 2px; margin-bottom: 10px; }
+  .price-label { font-size: 12px; color: #64748b; }
+  .price-amount { font-size: 32px; font-weight: 800; color: #0f172a; }
+  .price-unit { font-size: 15px; font-weight: 600; color: #64748b; margin-left: 2px; }
+  .price-note {
+    font-size: 12px;
+    color: #64748b;
+    background: #f8fafc;
+    padding: 6px 10px;
+    border-radius: 6px;
+    line-height: 1.5;
+  }
+  .price-tag {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #e11d48;
+    background: #fff1f2;
+    padding: 3px 10px;
+    border-radius: 6px;
+  }
+
+  /* Full-width single price card */
+  .price-card-full {
+    background: #fff;
+    border: 2px solid #e11d48;
+    border-radius: 14px;
+    padding: 28px 28px;
+    box-shadow: 0 2px 12px rgba(225,29,72,0.1);
+    position: relative;
+    display: flex;
+    gap: 0;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .price-card-full:hover { transform: scale(1.01); box-shadow: 0 6px 24px rgba(225,29,72,0.18); }
+  .price-full-left {
+    flex: 1;
+    padding-right: 28px;
+    border-right: 1px solid #f1f5f9;
+  }
+  .price-full-right {
+    flex: 1;
+    padding-left: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+  }
+  .price-metric-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 0;
+  }
+  .price-metric-label {
+    font-size: 12px;
+    color: #64748b;
+  }
+  .price-metric-value {
+    font-size: 26px;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.2;
+  }
+  .price-metric-unit {
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+    margin-left: 2px;
+  }
+  .price-metric-divider { height: 1px; background: #f1f5f9; }
+
+  @media (max-width: 600px) {
+    .price-card-full { flex-direction: column; }
+    .price-full-left { padding-right: 0; padding-bottom: 20px; border-right: none; border-bottom: 1px solid #f1f5f9; }
+    .price-full-right { padding-left: 0; padding-top: 20px; }
+  }
+
+  /* CTA */
+  .cta-section {
+    background: #fff1f2;
+    padding: 52px 24px;
+    text-align: center;
+  }
+  .cta-section h2 { font-size: clamp(20px, 3vw, 30px); font-weight: 800; color: #0f172a; margin-bottom: 8px; }
+  .cta-section p { color: #475569; font-size: 14px; margin-bottom: 22px; }
+  .cta-btn-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .back-link-btn {
+    display: inline-block;
+    background: transparent;
+    color: #e11d48;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: 1.5px solid #e11d48;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    white-space: nowrap;
+  }
+  .back-link-btn:hover { background: #e11d48; color: #fff; transform: scale(1.04); }
+  /* Hero title with logo */
+  .hero-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .hero-title-row h1 { margin-bottom: 0; }
+  .hero-platform-logo { height: 1em; width: auto; vertical-align: middle; }
+  .cta-btn {
+    display: inline-block;
+    background: #e11d48;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 16px 44px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .cta-btn:hover { background: #be185d; transform: scale(1.04); }
+
+  /* Contact */
+  .contact-section { background: #fff; border-top: 1px solid #e2e8f0; }
+  .contact-inner {
+    max-width: 940px; margin: 0 auto; padding: 28px 24px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;
+  }
+  .contact-block h3 { font-size: 15px; font-weight: 700; color: #0f172a; margin-bottom: 10px; }
+  .contact-item { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; font-size: 13px; color: #475569; }
+  .contact-icon {
+    width: 28px; height: 28px; background: #fff1f2; border-radius: 7px;
+    display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0;
+  }
+  .contact-item strong { color: #0f172a; }
+  .notes-list { list-style: none; }
+  .notes-list li { font-size: 12px; color: #64748b; padding: 3px 0 3px 14px; position: relative; line-height: 1.6; }
+  .notes-list li::before { content: '·'; position: absolute; left: 4px; color: #94a3b8; }
+
+  footer {
+    background: #f8fafc; border-top: 1px solid #e2e8f0;
+    text-align: center; padding: 24px; font-size: 13px; color: #94a3b8;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-item { opacity: 0; }
+  .fade-item.visible { animation: fadeInUp 0.4s ease forwards; }
+
+  .feature-item p,
+  .stat-desc,
+  .persona-list li,
+  .price-card-title,
+  .price-card-sub,
+  .price-note,
+  .price-tag,
+  .notes-list li { word-break: keep-all; }
+
+  @media (max-width: 600px) {
+    body { zoom: 1; }
+    .hero { padding: 52px 20px 44px; }
+    .hero h1 { font-size: 26px; word-break: keep-all; }
+    .hero p { word-break: keep-all; }
+    .section { padding: 32px 16px; }
+    .cta-btn { font-size: 17px; padding: 14px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="site-header"><img src="logo.png" alt="shoplive"/></div>
+  <div class="hero-badge fade-item">단일 광고 상품 · 구매의도 유저</div>
+  <div class="hero-title-row fade-item">
+    <img src="allive-logo.png" alt="올웨이즈" class="hero-platform-logo"/>
+    <h1>올웨이즈 <span>올라이브</span> 광고</h1>
+  </div>
+  <p class="fade-item">쇼핑 중인 3060 여성에게<br/>다이렉트로 도달하는 라이브 부스팅 광고</p>
+</div>
+
+<!-- Stats -->
+<div class="stat-bar">
+  <div class="stat-grid">
+    <div class="stat-item fade-item">
+      <div class="stat-value">1,000만+</div>
+      <div class="stat-desc">누적 다운로드</div>
+    </div>
+    <div class="stat-item fade-item">
+      <div class="stat-value">MAU 200만</div>
+      <div class="stat-desc">DAU 100만</div>
+    </div>
+    <div class="stat-item fade-item">
+      <div class="stat-value">체류시간 1위</div>
+      <div class="stat-desc">국내 쇼핑앱 주간 평균 85분</div>
+    </div>
+    <div class="stat-item fade-item">
+      <div class="stat-value">사용일 20일</div>
+      <div class="stat-desc">1인당 월평균 / 압도적 충성도</div>
+    </div>
+  </div>
+</div>
+
+<!-- Features -->
+<div class="features">
+  <div class="features-grid">
+    <div class="feature-item fade-item">
+      <div class="feature-icon">🛒</div>
+      <p><strong>구매의도 최고 유저</strong><br/>실시간 쇼핑 중인 유저에게 라이브 방송 직접 노출</p>
+    </div>
+    <div class="feature-item fade-item">
+      <div class="feature-icon">👩</div>
+      <p><strong>3060 여성 핵심 구매층</strong><br/>연령·성별 타겟팅 가능, 2050 여성 전 연령 포함</p>
+    </div>
+    <div class="feature-item fade-item">
+      <div class="feature-icon">🏆</div>
+      <p><strong>식음료 판매앱 업종 1위</strong><br/>MAU 140만, 카테고리 내 최강 충성 유저</p>
+    </div>
+    <div class="feature-item fade-item">
+      <div class="feature-icon">⚡</div>
+      <p><strong>부스팅 옵션 추가 가능</strong><br/>CPC 기반 추가 트래픽으로 유입 극대화</p>
+    </div>
+  </div>
+</div>
+
+<!-- Persona -->
+<div style="background:#fff;">
+  <div class="section">
+    <span class="section-label fade-item">유저 페르소나</span>
+    <h2 class="fade-item">올웨이즈 유저는 이렇게 쇼핑합니다</h2>
+    <p class="section-sub fade-item">단순 방문자가 아닌, 반복 구매 충성 유저가 핵심입니다.</p>
+    <div class="persona-grid">
+      <div class="persona-card fade-item">
+        <div class="persona-title">👤 주요 타겟</div>
+        <ul class="persona-list">
+          <li>주 연령층 <span>3060 여성</span></li>
+          <li>관심 카테고리 <span>식품 &gt; 패션 &gt; 생활용품 &gt; 뷰티</span></li>
+          <li>월평균 사용일수 <span>약 20일</span></li>
+        </ul>
+      </div>
+
+      <div class="persona-card fade-item">
+        <div class="persona-title">📱 광고 연결 방식</div>
+        <ul class="persona-list">
+          <li>앱 내 라이브 목록에 노출</li>
+          <li>알림 신청 → 방송 시작 시 푸시</li>
+          <li>클릭 즉시 라이브 화면으로 연결</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Pricing -->
+<div style="background:#f7f8fa;">
+  <div class="section">
+    <span class="section-label fade-item">가격표</span>
+    <h2 class="fade-item">1시간 구좌제로 유연하게 운영</h2>
+    <p class="section-sub fade-item">06시~24시 운영, 2시간 미만 방송은 1구좌로 운영 가능합니다. 모든 가격은 VAT 별도.</p>
+    <div class="price-card-full featured fade-item">
+      <div class="featured-badge">기본</div>
+      <div class="price-full-left">
+        <div class="price-card-title">올라이브 1구좌</div>
+        <div class="price-card-sub">1시간 단위 노출 구좌</div>
+        <div class="price-divider"></div>
+        <div class="price-row">
+          <span class="price-label">광고비 (VAT 별도)</span>
+          <span><span class="price-amount">35만</span><span class="price-unit">원</span></span>
+        </div>
+        <div class="price-tag">기존 50만원 → 35만원 인하</div>
+      </div>
+      <div class="price-full-right">
+        <div class="price-metric-item">
+          <div class="price-metric-label">예상 유니크 시청</div>
+          <div class="price-metric-value">5~7만<span class="price-metric-unit">명 이상</span></div>
+        </div>
+        <div class="price-metric-divider"></div>
+        <div class="price-metric-item">
+          <div class="price-metric-label">구좌 평균 PV</div>
+          <div class="price-metric-value">10~14만<span class="price-metric-unit">회</span></div>
+        </div>
+        <div class="price-metric-divider"></div>
+        <div class="price-metric-item">
+          <div class="price-metric-label">운영 시간</div>
+          <div class="price-metric-value">06~24시<span class="price-metric-unit"> 운영</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2 class="fade-item" style="animation-duration:0.25s !important; animation-delay:0s !important">쇼핑 중인 유저에게 지금 바로 도달하세요.</h2>
+  <p class="fade-item" style="animation-duration:0.25s !important; animation-delay:0.07s !important">제작부터 등록, 운영까지 맡기고 담당자님은 기획에만 집중하세요.</p>
+  <div class="cta-btn-group fade-item" style="animation-duration:0.25s !important; animation-delay:0.14s !important">
+    <a href="index.html" class="back-link-btn">← 광고 상품 보러가기</a>
+    <a href="https://forms.gle/CEoMgHXkoTxm7yzb6" class="cta-btn">라이브 광고 신청하기 →</a>
+  </div>
+</div>
+
+<!-- Contact -->
+<div class="contact-section">
+  <div class="contact-inner">
+    <div class="contact-block">
+      <h3>📩 광고 신청 및 문의</h3>
+      <div class="contact-item">
+        <div class="contact-icon">👤</div>
+        <span><strong>Robin Hwang</strong> · 광고사업팀</span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <span>ad@shoplivecorp.com</span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <span>010-5587-1558</span>
+      </div>
+    </div>
+    <div class="contact-block">
+      <h3>📋 안내사항</h3>
+      <ul class="notes-list">
+        <li>안내드리는 유입자 수는 평균 수치이며, 보장형 상품이 아닙니다.</li>
+        <li>1구좌 = 1시간 단위, 06~24시 운영, 2시간 미만 방송은 1구좌 운영 가능.</li>
+        <li>부스팅 옵션은 기본 구좌 신청 후 추가 가능합니다.</li>
+        <li>광고 집행은 라이브 일정 기준 영업일 4일 전까지 신청 권장.</li>
+        <li>모든 금액은 VAT 별도입니다.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer>
+  © 샵라이브 광고사업팀 · <a href="mailto:ad@shoplivecorp.com" style="color:#64748b;">ad@shoplivecorp.com</a>
+</footer>
+
+<script>
+  const items = document.querySelectorAll('.fade-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const siblings = [...entry.target.parentElement.querySelectorAll('.fade-item')];
+        const index = siblings.indexOf(entry.target);
+        entry.target.style.animationDelay = entry.target.style.animationDelay || (index * 0.08) + 's';
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  items.forEach(item => observer.observe(item));
+</script>
+</body>
+</html>
