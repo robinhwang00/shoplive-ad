@@ -31,6 +31,25 @@
     padding: 72px 24px 60px;
     text-align: center;
     position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: -100%;
+    background-image: url('allive-logo.png');
+    background-repeat: repeat;
+    background-size: 800px 800px;
+    opacity: 0.05;
+    transform: rotate(-20deg);
+    animation: heroBgScroll 18s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero > *:not(.site-header) { position: relative; z-index: 1; }
+  @keyframes heroBgScroll {
+    from { background-position: 0 0; }
+    to   { background-position: 800px 800px; }
   }
   .hero-badge {
     display: inline-block;
