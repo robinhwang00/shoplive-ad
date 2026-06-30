@@ -39,17 +39,17 @@
     inset: -100%;
     background-image: url('tossads-logo.png');
     background-repeat: repeat;
-    background-size: 80px 80px;
+    background-size: 800px 800px;
     opacity: 0.05;
     transform: rotate(-20deg);
     animation: heroBgScroll 18s linear infinite;
     pointer-events: none;
     z-index: 0;
   }
-  .hero > * { position: relative; z-index: 1; }
+  .hero > *:not(.site-header) { position: relative; z-index: 1; }
   @keyframes heroBgScroll {
     from { background-position: 0 0; }
-    to   { background-position: 80px 80px; }
+    to   { background-position: 800px 800px; }
   }
   .hero-badge {
     display: inline-block;
