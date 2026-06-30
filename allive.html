@@ -33,26 +33,27 @@
     position: relative;
     overflow: hidden;
   }
-  .hero::before {
-    content: '';
+  .hero > *:not(.site-header):not(.hero-watermark) { position: relative; z-index: 1; }
+  .hero-watermark {
     position: absolute;
-    inset: -100%;
-    background-image: url('allive-logo.png');
-    background-repeat: repeat;
-    background-size: 800px 800px;
-    opacity: 0.05;
+    inset: -150%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 160px);
+    gap: 200px;
     transform: rotate(-20deg);
-    animation: heroBgScroll 18s linear infinite;
+    opacity: 0.06;
     pointer-events: none;
     z-index: 0;
-    image-rendering: auto;
-    background-origin: padding-box;
-    background-position: 200px 200px;
+    animation: heroWmMove 22s linear infinite;
   }
-  .hero > *:not(.site-header) { position: relative; z-index: 1; }
-  @keyframes heroBgScroll {
-    from { background-position: 200px 200px; }
-    to   { background-position: 1100px 1100px; }
+  .hero-watermark img {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+  }
+  @keyframes heroWmMove {
+    from { transform: rotate(-20deg) translate(0, 0); }
+    to   { transform: rotate(-20deg) translate(360px, 360px); }
   }
   .hero-badge {
     display: inline-block;
@@ -448,6 +449,7 @@
 <body>
 
 <div class="hero">
+  <div class="hero-watermark" id="heroWatermark"></div>
   <div class="site-header"><img src="logo.png" alt="shoplive"/></div>
   <div class="hero-badge fade-item">단일 광고 상품 · 구매의도 유저</div>
   <div class="hero-title-row fade-item">
@@ -613,6 +615,15 @@
 </footer>
 
 <script>
+  // Watermark grid
+  const wm = document.getElementById('heroWatermark');
+  for (let i = 0; i < 50; i++) {
+    const img = document.createElement('img');
+    img.src = 'allive-logo.png';
+    img.alt = '';
+    wm.appendChild(img);
+  }
+
   const items = document.querySelectorAll('.fade-item');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
