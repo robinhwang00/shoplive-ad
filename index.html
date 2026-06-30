@@ -230,6 +230,26 @@
     display: inline-block;
     font-weight: 600;
   }
+  .card-detail-btn {
+    display: block;
+    margin-top: 14px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+    background: #f1f5f9;
+    padding: 8px 0;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+  }
+  .card-detail-btn:hover { background: #e2e8f0; color: #0f172a; transform: scale(1.02); }
+  a.pkg-item {
+    text-decoration: none;
+    cursor: pointer;
+    transition: filter 0.2s, transform 0.15s;
+  }
+  a.pkg-item:hover { filter: brightness(0.93); transform: scale(1.02); }
 
   /* Package Cards */
   .package-card {
@@ -546,9 +566,9 @@
       <div class="package-name">베이직 패키지</div>
       <div class="package-desc">라이브 광고가 처음이라면<br/>진입 장벽 없이 시작</div>
       <div class="package-items">
-        <div class="pkg-item purple">리워드 기반 매체 동시 송출 3만 명</div>
+        <a href="reward.html" class="pkg-item purple">리워드 기반 매체 동시 송출 3만 명</a>
         <div class="pkg-plus">+</div>
-        <div class="pkg-item blue">토스애즈 베이직 5만 명</div>
+        <a href="tossads.html" class="pkg-item blue">토스애즈 베이직 5만 명</a>
       </div>
       <div class="package-total">총 8만 명</div>
       <div class="package-price-row">
@@ -564,11 +584,11 @@
       <div class="package-name">스탠다드 패키지</div>
       <div class="package-desc">정기 라이브를 운영하는<br/>브랜드의 기본 세팅</div>
       <div class="package-items">
-        <div class="pkg-item purple">리워드 기반 매체 동시 송출 5만 명</div>
+        <a href="reward.html" class="pkg-item purple">리워드 기반 매체 동시 송출 5만 명</a>
         <div class="pkg-plus">+</div>
-        <div class="pkg-item blue">토스애즈 베이직 5만 명</div>
+        <a href="tossads.html" class="pkg-item blue">토스애즈 베이직 5만 명</a>
         <div class="pkg-plus">+</div>
-        <div class="pkg-item pink">올웨이즈 올라이브 5만 명</div>
+        <a href="allive.html" class="pkg-item pink">올웨이즈 올라이브 5만 명</a>
       </div>
       <div class="package-total">총 15만 명</div>
       <div class="package-price-row">
@@ -583,11 +603,11 @@
       <div class="package-name">스마트 패키지</div>
       <div class="package-desc">대형 캠페인,<br/>대세감이 필요한 브랜드용</div>
       <div class="package-items">
-        <div class="pkg-item purple">리워드 기반 매체 동시 송출 5만 명</div>
+        <a href="reward.html" class="pkg-item purple">리워드 기반 매체 동시 송출 5만 명</a>
         <div class="pkg-plus">+</div>
-        <div class="pkg-item blue">토스애즈 플러스 15만 명 이상</div>
+        <a href="tossads.html" class="pkg-item blue">토스애즈 플러스 15만 명 이상</a>
         <div class="pkg-plus">+</div>
-        <div class="pkg-item pink">올웨이즈 올라이브 5만 명</div>
+        <a href="allive.html" class="pkg-item pink">올웨이즈 올라이브 5만 명</a>
       </div>
       <div class="package-total">총 25만 명 이상</div>
       <div class="package-price-row">
@@ -627,6 +647,7 @@
         </div>
       </div>
       <div class="card-tag">뷰티 · 패션 · 리빙 타겟 특화</div>
+      <a href="reward.html" class="card-detail-btn">자세히 보기 →</a>
     </div>
 
     <!-- 대규모 도달 -->
@@ -646,6 +667,7 @@
         </div>
       </div>
       <div class="card-tag">대형 이벤트 · 신규 런칭에 추천</div>
+      <a href="tossads.html" class="card-detail-btn">자세히 보기 →</a>
     </div>
 
     <!-- 구매의도 유저 -->
@@ -661,6 +683,7 @@
         </div>
       </div>
       <div class="card-tag">식품 · 생활 · 리빙 카테고리 최적화</div>
+      <a href="allive.html" class="card-detail-btn">자세히 보기 →</a>
     </div>
   </div>
 </div>
