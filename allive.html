@@ -45,11 +45,14 @@
     animation: heroBgScroll 18s linear infinite;
     pointer-events: none;
     z-index: 0;
+    image-rendering: auto;
+    background-origin: padding-box;
+    background-position: 200px 200px;
   }
   .hero > *:not(.site-header) { position: relative; z-index: 1; }
   @keyframes heroBgScroll {
-    from { background-position: 0 0; }
-    to   { background-position: 800px 800px; }
+    from { background-position: 200px 200px; }
+    to   { background-position: 1100px 1100px; }
   }
   .hero-badge {
     display: inline-block;
