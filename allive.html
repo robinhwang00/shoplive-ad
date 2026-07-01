@@ -36,10 +36,10 @@
   .hero > *:not(.site-header):not(.hero-watermark) { position: relative; z-index: 1; }
   .hero-watermark {
     position: absolute;
-    inset: -150%;
+    inset: -200%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 160px);
-    gap: 200px;
+    grid-template-columns: repeat(auto-fill, 1440px);
+    gap: 400px;
     transform: rotate(-20deg);
     opacity: 0.06;
     pointer-events: none;
@@ -47,13 +47,13 @@
     animation: heroWmMove 22s linear infinite;
   }
   .hero-watermark img {
-    width: 160px;
-    height: 160px;
+    width: 1440px;
+    height: 1440px;
     object-fit: contain;
   }
   @keyframes heroWmMove {
     from { transform: rotate(-20deg) translate(0, 0); }
-    to   { transform: rotate(-20deg) translate(360px, 360px); }
+    to   { transform: rotate(-20deg) translate(1840px, 1840px); }
   }
   .hero-badge {
     display: inline-block;
