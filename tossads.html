@@ -387,12 +387,11 @@
   @media (max-width: 600px) {
     body { zoom: 1; }
     .m-br { display: inline; }
-    .site-header img { height: 18px; }
+    .site-header { display: none; }
+    .hero-platform-logo { display: none; }
+    .hero-title-row { justify-content: center; }
+    .hero-title-row h1 { font-size: 26px; word-break: keep-all; text-align: center; }
     .hero { padding: 52px 20px 44px; }
-    /* 토스 로고+제목: 모바일에서 제목 첫 줄에 로고 정렬 */
-    .hero-title-row { align-items: flex-start; gap: 8px; }
-    .hero-platform-logo { height: 30px; }
-    .hero-title-row h1 { font-size: 26px; word-break: keep-all; }
     .hero p { word-break: keep-all; }
     .section { padding: 32px 16px; }
     .section h2,
@@ -463,7 +462,7 @@
     </div>
     <div class="feature-item fade-item">
       <div class="feature-icon">🎯</div>
-      <p><strong>대형 이벤트·신규 런칭</strong><br/>폭발적인 초기 트래픽이 필요한 브랜드에 최적</p>
+      <p><strong>대형 이벤트·신규 런칭</strong><br/>폭발적인 초기 트래픽이<br class="m-br"/>필요한 브랜드에 최적</p>
     </div>
     <div class="feature-item fade-item">
       <div class="feature-icon">💳</div>
@@ -471,7 +470,7 @@
     </div>
     <div class="feature-item fade-item">
       <div class="feature-icon">📋</div>
-      <p><strong>D+1 성과 보고서</strong><br/>방송 다음날 오전 시청·클릭 지표 리포트 제공</p>
+      <p><strong>D+1 성과 보고서</strong><br/>방송 다음날 오전 시청·클릭 지표<br class="m-br"/>리포트 제공</p>
     </div>
   </div>
 </div>
@@ -560,9 +559,9 @@
     </div>
     <div class="notes-box fade-item">
       <ul>
-        <li>골든타임 기준: 오전 10~12시, 오후 19~21시 (할증 20% 적용)</li>
+        <li>골든타임 기준: 오전 10~12시, 오후 19~21시<br class="m-br"/>(할증 20% 적용)</li>
         <li>예상 시청 인원 수치는 평균값이며, 보장형 상품이 아닙니다.</li>
-        <li>광고 집행은 라이브 일정 기준 영업일 4일 전까지 신청 권장.</li>
+        <li>광고 집행은 라이브 일정 기준 영업일 4일 전까지<br class="m-br"/>신청 권장.</li>
         <li>모든 일정은 영업일 기준입니다.</li>
       </ul>
     </div>
@@ -571,8 +570,8 @@
 
 <!-- CTA -->
 <div class="cta-section">
-  <h2 class="fade-item" style="animation-duration:0.25s !important; animation-delay:0s !important">대규모 도달로 라이브 매출을 극대화하세요.</h2>
-  <p class="fade-item" style="animation-duration:0.25s !important; animation-delay:0.07s !important">제작부터 등록, 운영까지 맡기고 담당자님은 기획에만 집중하세요.</p>
+  <h2 class="fade-item" style="animation-duration:0.25s !important; animation-delay:0s !important">대규모 도달로<br class="m-br"/>라이브 매출을 극대화하세요.</h2>
+  <p class="fade-item" style="animation-duration:0.25s !important; animation-delay:0.07s !important">제작부터 등록, 운영까지 맡기고<br class="m-br"/>담당자님은 기획에만 집중하세요.</p>
   <div class="cta-btn-group fade-item" style="animation-duration:0.25s !important; animation-delay:0.14s !important">
     <a href="index.html" class="back-link-btn">← 광고 상품 보러가기</a>
     <a href="https://forms.gle/CEoMgHXkoTxm7yzb6" class="cta-btn">라이브 광고 신청하기 →</a>
