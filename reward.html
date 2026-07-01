@@ -33,14 +33,18 @@
     position: relative;
     overflow: hidden;
   }
+  /* 2열 고정 컨테이너를 히어로 중앙에 배치 — 회전 후 히어로 전체를 커버 */
   .hero-watermark {
     position: absolute;
-    inset: -200%;
+    width: 480px;          /* 200px × 2열 + gap 80px */
+    top: 50%;
+    left: 50%;
+    margin-left: -240px;   /* 컨테이너 수평 중앙 정렬 */
+    margin-top: -4200px;   /* 높이 8400px의 절반 → 수직 중앙 정렬 */
     display: grid;
     grid-template-columns: repeat(2, 200px);
     gap: 80px;
-    transform: rotate(-20deg);
-    opacity: 0.07;
+    opacity: 0.08;
     pointer-events: none;
     z-index: 0;
     animation: heroWmMove 12s linear infinite;
@@ -53,6 +57,7 @@
   }
   .hero > *:not(.site-header):not(.hero-watermark) { position: relative; z-index: 1; }
   @keyframes heroWmMove {
+    /* 2열×5행 = 한 블록: X=560px(2열), Y=1400px(5행) 이동 후 패턴 동일 → 끊김 없음 */
     from { transform: rotate(-20deg) translate(0, 0); }
     to   { transform: rotate(-20deg) translate(560px, 1400px); }
   }
@@ -672,7 +677,7 @@
     ];
     const wm = document.getElementById('heroWatermark');
     // 2열 그리드: 10개 로고를 2×5 블록으로 반복 (충분한 셀 수)
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 60; i++) {
       const img = document.createElement('img');
       img.src = logos[i % logos.length];
       img.alt = '';
