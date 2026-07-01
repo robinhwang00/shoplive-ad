@@ -382,11 +382,17 @@
   .process-step-desc,
   .notes-box li,
   .notes-list li { word-break: keep-all; }
+  .m-br { display: none; }
 
   @media (max-width: 600px) {
     body { zoom: 1; }
+    .m-br { display: inline; }
+    .site-header img { height: 18px; }
     .hero { padding: 52px 20px 44px; }
-    .hero h1 { font-size: 26px; word-break: keep-all; }
+    /* 토스 로고+제목: 모바일에서 제목 첫 줄에 로고 정렬 */
+    .hero-title-row { align-items: flex-start; gap: 8px; }
+    .hero-platform-logo { height: 30px; }
+    .hero-title-row h1 { font-size: 26px; word-break: keep-all; }
     .hero p { word-break: keep-all; }
     .section { padding: 32px 16px; }
     .section h2,
@@ -405,8 +411,11 @@
     .notes-list li { word-break: keep-all; }
     .cta-section h2,
     .cta-section p { word-break: keep-all; }
-    .process-row { gap: 4px; }
-    .process-step { min-width: 90px; padding: 12px 10px; }
+    /* 프로세스 박스 높이 통일 */
+    .process-row { gap: 4px; align-items: stretch; }
+    .process-step { min-width: 90px; padding: 12px 8px; flex: 1;
+                    display: flex; flex-direction: column;
+                    align-items: center; justify-content: center; }
     .cta-btn { font-size: 17px; padding: 14px 28px; }
   }
 </style>
@@ -418,7 +427,7 @@
   <div class="hero-badge fade-item">단일 광고 상품 · 대규모 도달</div>
   <div class="hero-title-row fade-item">
     <img src="tossads-logo.png" alt="토스애즈" class="hero-platform-logo"/>
-    <h1>토스애즈 <span>라이브마켓</span> 광고</h1>
+    <h1>토스애즈<br class="m-br"/><span>라이브마켓</span> 광고</h1>
   </div>
   <p class="fade-item">목표하는 시청자 확보로 매출 증대 달성</p>
 </div>

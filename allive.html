@@ -435,9 +435,12 @@
   .price-note,
   .price-tag,
   .notes-list li { word-break: keep-all; }
+  .m-br { display: none; }
 
   @media (max-width: 600px) {
     body { zoom: 1; }
+    .m-br { display: inline; }
+    .site-header img { height: 18px; }
     .hero { padding: 52px 20px 44px; }
     .hero h1 { font-size: 26px; word-break: keep-all; }
     .hero p { word-break: keep-all; }
@@ -471,7 +474,7 @@
     <img src="allive-logo.png" alt="올웨이즈" class="hero-platform-logo"/>
     <h1>올웨이즈 <span>올라이브</span> 광고</h1>
   </div>
-  <p class="fade-item">쇼핑 중인 3060 여성에게<br/>다이렉트로 도달하는 라이브 부스팅 광고</p>
+  <p class="fade-item">쇼핑 중인 3060 여성에게<br/>다이렉트로 도달하는<br class="m-br"/>라이브 부스팅 광고</p>
 </div>
 
 <!-- Stats -->

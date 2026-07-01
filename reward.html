@@ -435,9 +435,12 @@
   .price-note,
   .notes-list li,
   .notes-box li { word-break: keep-all; }
+  .m-br { display: none; }
 
   @media (max-width: 600px) {
     body { zoom: 1; }
+    .m-br { display: inline; }
+    .site-header img { height: 18px; }
     .hero { padding: 52px 20px 44px; }
     .hero h1 { font-size: 26px; word-break: keep-all; }
     .hero p { word-break: keep-all; }
@@ -479,7 +482,7 @@
   <div class="hero-watermark" id="heroWatermark"></div>
   <div class="hero-badge fade-item">단일 광고 상품 · 정밀 타겟팅</div>
   <h1 class="fade-item">리워드 기반 매체<br/><span>정밀 타겟팅</span> 광고</h1>
-  <p class="fade-item">한 번의 세팅으로 500개 이상 프리미엄 매체에 동시 노출</p>
+  <p class="fade-item">한 번의 세팅으로 500개 이상<br class="m-br"/>프리미엄 매체에 동시 노출</p>
 </div>
 
 <!-- Features -->

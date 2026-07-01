@@ -493,12 +493,14 @@
   .fade-item.visible {
     animation: fadeInUp 0.4s ease forwards;
   }
+  .m-br { display: none; }
 
   @media (max-width: 600px) {
     body { zoom: 1; }
+    .m-br { display: inline; }
+    .site-header img { height: 18px; }
     .hero { padding: 48px 20px 40px; }
     .hero h1 { font-size: 28px; word-break: keep-all; }
-    .hero p br { display: none; }
     .hero p { font-size: 15px; word-break: keep-all; }
     .hero-cta { font-size: 17px; padding: 13px 28px; }
     .site-header img { height: 22px; }
@@ -531,7 +533,7 @@
   <div class="fade-item" style="animation-delay:0s">
     <div class="hero-badge">샵라이브 올인원 광고</div>
     <h1>같은 라이브라도<br/><span>누가 오느냐</span>가 매출을 결정합니다</h1>
-    <p>단순 트래픽이 아닌, 구매 가능성이 높은 고객 유입에 집중합니다.<br/>제작부터 등록까지 샵라이브가 전담하니, 담당자님은 상품·혜택·기획에만 집중하세요.</p>
+    <p>단순 트래픽이 아닌,<br class="m-br"/>구매 가능성이 높은 고객 유입에 집중합니다.<br/>제작부터 등록까지 샵라이브가 전담하니,<br class="m-br"/>담당자님은 상품·혜택·기획에만 집중하세요.</p>
   </div>
   <a href="https://forms.gle/CEoMgHXkoTxm7yzb6" class="hero-cta fade-item" style="animation-delay:0.35s">라이브 광고 신청하기 →</a>
 </div>
