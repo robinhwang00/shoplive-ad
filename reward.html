@@ -33,35 +33,23 @@
     position: relative;
     overflow: hidden;
   }
-  /* 5열×2행 블록 패턴으로 전체 배경 채우기 */
+  /* Canvas로 5×2 타일 생성 → background-position만 이동 → 완전 끊김 없음 */
   .hero-watermark {
     position: absolute;
-    inset: -200%;
-    display: grid;
-    grid-template-columns: repeat(20, 400px);
-    gap: 80px;
-    align-content: start;
-    opacity: 0.08;
+    inset: -300%;
+    transform: rotate(-20deg);
+    background-repeat: repeat;
+    background-size: 2400px 960px; /* 5열×2행: 5×480 × 2×480 */
+    opacity: 0.04;
     pointer-events: none;
     z-index: 0;
     animation: heroWmMove 24s linear infinite;
   }
-  .hero-watermark img {
-    width: 400px;
-    height: 400px;
-    object-fit: contain;
-    border-radius: 22%;
-  }
   .hero > *:not(.site-header):not(.hero-watermark) { position: relative; z-index: 1; }
   @keyframes heroWmMove {
-    /*
-      셀 주기 = 400 + 80 = 480px
-      5열 주기 = 5 × 480 = 2400px
-      2행 주기 = 2 × 480 =  960px
-      translate(2400, 960) 이동 후 (row%2, col%5) 인덱스 동일 → 완전 끊김 없음
-    */
-    from { transform: rotate(-20deg) translate(0, 0); }
-    to   { transform: rotate(-20deg) translate(2400px, 960px); }
+    /* background-position이 정확히 타일 1장(2400×960) 만큼 이동 → 완벽히 이어짐 */
+    from { background-position: 0 0; }
+    to   { background-position: 2400px 960px; }
   }
   .hero-badge {
     display: inline-block;
@@ -663,35 +651,43 @@
 </footer>
 
 <script>
-  // 리워드 매체 워터마크 로고 그리드
+  // Canvas로 5×2 타일 1장을 그린 뒤 background-image로 설정
+  // background-position 애니메이션으로 타일 1장씩 이동 → 완전 끊김 없음
   (function() {
-    const logos = [
-      'rm-logo-1.PNG',
-      'rm-logo-2.PNG',
-      'rm-logo-3.PNG',
-      'rm-logo-4.PNG',
-      'rm-logo-5.PNG',
-      'rm-logo-6.PNG',
-      'rm-logo-7.PNG',
-      'rm-logo-8.PNG',
-      'rm-logo-9.PNG',
-      'rm-logo-10.PNG',
+    const srcs = [
+      'rm-logo-1.PNG','rm-logo-2.PNG','rm-logo-3.PNG','rm-logo-4.PNG','rm-logo-5.PNG',
+      'rm-logo-6.PNG','rm-logo-7.PNG','rm-logo-8.PNG','rm-logo-9.PNG','rm-logo-10.PNG',
     ];
-    const wm = document.getElementById('heroWatermark');
-    // 20열 × 30행 = 600셀
-    // 각 셀 위치: 행(row) % 5 → 해당 행의 로고 쌍, 열(col) % 2 → 쌍 중 좌/우
-    // 결과: 가로로 [로고A, 로고B] 반복, 세로로 5행마다 2×5 블록 반복
-    // 5열×2행 블록 패턴: col%5 → 열 위치(0~4), row%2 → 행 위치(0~1)
-    // translate(2400,960) 이동 후 (row%2, col%5) 동일 → 완전 끊김 없음
-    const COLS = 20, ROWS = 20;
-    for (let row = 0; row < ROWS; row++) {
-      for (let col = 0; col < COLS; col++) {
-        const img = document.createElement('img');
-        img.src = logos[(row % 2) * 5 + (col % 5)];
-        img.alt = '';
-        wm.appendChild(img);
-      }
-    }
+    const CELL = 400, GAP = 80, COLS = 5, ROWS = 2;
+    const TW = COLS * (CELL + GAP); // 2400px
+    const TH = ROWS * (CELL + GAP); // 960px
+
+    Promise.all(srcs.map(src => new Promise(res => {
+      const img = new Image();
+      img.onload = () => res(img);
+      img.onerror = () => res(null);
+      img.src = src;
+    }))).then(imgs => {
+      const canvas = document.createElement('canvas');
+      canvas.width = TW;
+      canvas.height = TH;
+      const ctx = canvas.getContext('2d');
+      imgs.forEach((img, i) => {
+        if (!img) return;
+        const col = i % COLS;
+        const row = Math.floor(i / COLS);
+        const x = col * (CELL + GAP);
+        const y = row * (CELL + GAP);
+        ctx.save();
+        ctx.beginPath();
+        ctx.roundRect(x, y, CELL, CELL, CELL * 0.2);
+        ctx.clip();
+        ctx.drawImage(img, x, y, CELL, CELL);
+        ctx.restore();
+      });
+      document.getElementById('heroWatermark').style.backgroundImage =
+        `url('${canvas.toDataURL()}')`;
+    });
   })();
 
   const items = document.querySelectorAll('.fade-item');
