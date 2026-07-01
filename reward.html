@@ -37,24 +37,24 @@
     position: absolute;
     inset: -200%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 180px);
-    gap: 100px;
+    grid-template-columns: repeat(2, 200px);
+    gap: 80px;
     transform: rotate(-20deg);
     opacity: 0.07;
     pointer-events: none;
     z-index: 0;
-    animation: heroWmMove 24s linear infinite;
+    animation: heroWmMove 12s linear infinite;
   }
   .hero-watermark img {
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
     object-fit: contain;
     border-radius: 22%;
   }
   .hero > *:not(.site-header):not(.hero-watermark) { position: relative; z-index: 1; }
   @keyframes heroWmMove {
     from { transform: rotate(-20deg) translate(0, 0); }
-    to   { transform: rotate(-20deg) translate(280px, 280px); }
+    to   { transform: rotate(-20deg) translate(560px, 1400px); }
   }
   .hero-badge {
     display: inline-block;
@@ -659,19 +659,20 @@
   // 리워드 매체 워터마크 로고 그리드
   (function() {
     const logos = [
-      'rm-logo-1.png',  // Q (Qoo10)
-      'rm-logo-2.png',  // Z (Zigzag)
-      'rm-logo-3.png',  // 노란 메모지
-      'rm-logo-4.png',  // 멀티컬러 링
-      'rm-logo-5.png',  // 파란 L
-      'rm-logo-6.png',  // 주황 O (Melon 등)
-      'rm-logo-7.png',  // 빨간 번개
-      'rm-logo-8.png',  // 파란 M
-      'rm-logo-9.png',  // 노란 B
-      'rm-logo-10.png', // 카카오페이
+      'rm-logo-1.PNG',
+      'rm-logo-2.PNG',
+      'rm-logo-3.PNG',
+      'rm-logo-4.PNG',
+      'rm-logo-5.PNG',
+      'rm-logo-6.PNG',
+      'rm-logo-7.PNG',
+      'rm-logo-8.PNG',
+      'rm-logo-9.PNG',
+      'rm-logo-10.PNG',
     ];
     const wm = document.getElementById('heroWatermark');
-    for (let i = 0; i < 80; i++) {
+    // 2열 그리드: 10개 로고를 2×5 블록으로 반복 (충분한 셀 수)
+    for (let i = 0; i < 100; i++) {
       const img = document.createElement('img');
       img.src = logos[i % logos.length];
       img.alt = '';
