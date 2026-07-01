@@ -38,7 +38,7 @@
     position: absolute;
     inset: -200%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 1440px);
+    grid-template-columns: repeat(auto-fill, 720px);
     gap: 400px;
     transform: rotate(-20deg);
     opacity: 0.06;
@@ -47,13 +47,13 @@
     animation: heroWmMove 22s linear infinite;
   }
   .hero-watermark img {
-    width: 1440px;
-    height: 1440px;
+    width: 720px;
+    height: 720px;
     object-fit: contain;
   }
   @keyframes heroWmMove {
     from { transform: rotate(-20deg) translate(0, 0); }
-    to   { transform: rotate(-20deg) translate(1840px, 1840px); }
+    to   { transform: rotate(-20deg) translate(1120px, 1120px); }
   }
   .hero-badge {
     display: inline-block;
