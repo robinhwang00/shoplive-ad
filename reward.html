@@ -33,30 +33,35 @@
     position: relative;
     overflow: hidden;
   }
-  /* 20열로 배경 전체를 채우되 JS에서 2×5 블록 패턴으로 로고 배치 */
+  /* 5열×2행 블록 패턴으로 전체 배경 채우기 */
   .hero-watermark {
     position: absolute;
     inset: -200%;
     display: grid;
-    grid-template-columns: repeat(20, 200px);
+    grid-template-columns: repeat(20, 400px);
     gap: 80px;
     align-content: start;
     opacity: 0.08;
     pointer-events: none;
     z-index: 0;
-    animation: heroWmMove 12s linear infinite;
+    animation: heroWmMove 24s linear infinite;
   }
   .hero-watermark img {
-    width: 200px;
-    height: 200px;
+    width: 400px;
+    height: 400px;
     object-fit: contain;
     border-radius: 22%;
   }
   .hero > *:not(.site-header):not(.hero-watermark) { position: relative; z-index: 1; }
   @keyframes heroWmMove {
-    /* 2열 주기=560px, 5행 주기=1400px → 이동 후 패턴 완전히 동일 → 끊김 없음 */
+    /*
+      셀 주기 = 400 + 80 = 480px
+      5열 주기 = 5 × 480 = 2400px
+      2행 주기 = 2 × 480 =  960px
+      translate(2400, 960) 이동 후 (row%2, col%5) 인덱스 동일 → 완전 끊김 없음
+    */
     from { transform: rotate(-20deg) translate(0, 0); }
-    to   { transform: rotate(-20deg) translate(560px, 1400px); }
+    to   { transform: rotate(-20deg) translate(2400px, 960px); }
   }
   .hero-badge {
     display: inline-block;
@@ -676,11 +681,13 @@
     // 20열 × 30행 = 600셀
     // 각 셀 위치: 행(row) % 5 → 해당 행의 로고 쌍, 열(col) % 2 → 쌍 중 좌/우
     // 결과: 가로로 [로고A, 로고B] 반복, 세로로 5행마다 2×5 블록 반복
-    const COLS = 20, ROWS = 30;
+    // 5열×2행 블록 패턴: col%5 → 열 위치(0~4), row%2 → 행 위치(0~1)
+    // translate(2400,960) 이동 후 (row%2, col%5) 동일 → 완전 끊김 없음
+    const COLS = 20, ROWS = 20;
     for (let row = 0; row < ROWS; row++) {
       for (let col = 0; col < COLS; col++) {
         const img = document.createElement('img');
-        img.src = logos[(row % 5) * 2 + (col % 2)];
+        img.src = logos[(row % 2) * 5 + (col % 5)];
         img.alt = '';
         wm.appendChild(img);
       }
